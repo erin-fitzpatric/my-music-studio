@@ -1,0 +1,72 @@
+<app-menu></app-menu>
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title'>{{title}} </span>
+    </div>
+</div>
+<p *ngIf='!user'>Loading...</p>
+<div *ngIf='user'>
+    <main class="single">
+        <table class="table table-sm">
+            <tr>
+                <td>
+                    Username:
+                </td>
+                <td>
+                    <input [(ngModel)]="user.userName" class="rounded" type="text" maxlength="20" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Password:
+                </td>
+                <td>
+                    <input [(ngModel)]="user.password" id="pass" name="password" class="rounded" type="password" minlength="8" maxlength="20" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    First Name:
+                </td>
+                <td>
+                    <input [(ngModel)]="user.firstName" class="rounded" type="text" maxlength="20" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Last Name:
+                </td>
+                <td>
+                    <input [(ngModel)]="user.lastName" class="rounded" type="text" maxlength="20" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Phone Number:
+                </td>
+                <td>
+                    <input [(ngModel)]="user.phoneNumber" class="rounded" type="text" maxlength="12" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email:
+                </td>
+                <td>
+                    <input [(ngModel)]="user.email" class="rounded" name="emailaddress" type="email" maxlength="75" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    isAdmin:
+                </td>
+                <td>
+                    <input [(ngModel)]="user.isAdmin" class="rounded" type="radio" value="true" name="isAdmin" required> True
+                    <input [(ngModel)]="user.isAdmin" class="rounded" type="radio" value="false" name="isAdmin" required> False
+                </td>
+            </tr>
+        </table>
+    </main>
+    <span><button (click)="save()" class="btn btn-sm btn-primary">Save</button></span>
+</div>

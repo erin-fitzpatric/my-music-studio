@@ -1,0 +1,8 @@
+<nav *ngIf="!loggedInUser==''">
+    <img src='assets/fitzbanner.png' style="height: 7em;" title='Page Title'>
+    <ul *ngIf="isAdmin">
+        <li *ngFor="let mi of menuItems" title="{{mi.toolTip}}">
+            <a routerLink="{{mi.href}}">{{mi.display}}</a>
+        </li>
+    </ul>
+</nav>

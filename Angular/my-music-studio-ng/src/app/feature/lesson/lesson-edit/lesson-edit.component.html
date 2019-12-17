@@ -1,0 +1,41 @@
+<app-menu></app-menu>
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title' style="font-size: larger;">{{title}} </span>
+    </div>
+</div>
+<p *ngIf='!lesson'>Loading...</p>
+<div *ngIf='lesson'>
+    <main class="single">
+        <table class="table table-sm">
+            <tr>
+                <td>
+                    User:
+                </td>
+                <td>
+                    <select [(ngModel)]="lesson.user" class="rounded" type="text" [compareWith]="compUser">
+                        <option *ngFor='let u of users' [ngValue]='u'>{{u.userName}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    New Lesson Date and Time:
+                </td>
+                <td>
+                    <input [(ngModel)]="lesson.lessonDateTime" class="rounded" type="datetime-local" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Location:
+                </td>
+                <td>
+                    <input [(ngModel)]="lesson.location" class="rounded" type="text" required>
+                </td>
+            </tr>
+        </table>
+    </main>
+    <span><button (click)="save()" class="btn btn-sm btn-primary">Save</button></span> |
+    <span><button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span>
+</div>

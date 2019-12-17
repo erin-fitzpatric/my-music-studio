@@ -1,0 +1,38 @@
+<app-menu></app-menu>
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title' style="font-size:x-large;">{{title}}</span>
+    </div>
+</div>
+<p *ngIf='!users'>Loading...</p>
+<table *ngIf='users' class="table table-striped">
+    <thead>
+        <tr>
+            <th><a (click)="sortBy('id')" style="cursor: pointer;">Id</a></th>
+            <th>User Name</th>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>isAdmin</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let u of users | sort:sortCriteria:sortOrder">
+            <td>{{u.id}}</td>
+            <td>{{u.userName}}</td>
+            <td>{{u.lastName+", "+u.firstName}}</td>
+            <td>{{u.phoneNumber}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.isAdmin}}</td>
+            <td>
+                <a routerLink='/users/edit/{{u.id}}' *ngIf="isAdmin|| u.id==loggedInUser.id"><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
+                &nbsp;
+                <a (click)="delete(u.id)" style="cursor: pointer;"><img src='assets/delete.png' width='20' height='20' title='delete'></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<span><a routerLink='/users/create' *ngIf="isAdmin">
+        <img id='createnew' width='35' height='35' src='assets/add-icon.png' title='Add New'></a>
+</span>

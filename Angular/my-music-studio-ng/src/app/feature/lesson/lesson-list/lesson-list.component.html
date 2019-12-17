@@ -1,0 +1,39 @@
+<app-menu></app-menu>
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title' style="font-size: x-large;">{{title}} </span>
+    </div>
+</div>
+<p *ngIf='!lessons'>Loading...</p>
+<table *ngIf='lessons' class="table table-striped">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Date Assigned</th>
+            <th>Lesson Date</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let l of lessons | sort:sortCriteria:sortOrder">
+            <td>{{l.user.userName}}</td>
+            <td>{{l.dateAssigned | date: 'mediumDate'}}</td>
+            <td>{{l.lessonDateTime | date:'mediumDate'}}</td>
+            <td><time>{{l.lessonDateTime | date:'shortTime'}}</time></td>
+            <td>{{l.location}}</td>
+            <td>{{l.status}}</td>
+            <td>
+                <a routerLink='/lessons/assignment/{{l.id}}'><img src='assets/lines.png' width='20' height='20' title='Assignment'></a>
+                &nbsp;
+                <a routerLink='/lessons/edit/{{l.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit Lesson' *ngIf="isAdmin"></a>
+                &nbsp;
+                <a (click)="delete(l.id)" style="cursor: pointer;"><img src='assets/delete.png' width='20' height='20' title='Delete' *ngIf="isAdmin"></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<span><a routerLink='/lessons/create'>
+    <img id='createnew' width='35' height='35' src='assets/add-icon.png' title='Add New' *ngIf="isAdmin"></a>
+</span>

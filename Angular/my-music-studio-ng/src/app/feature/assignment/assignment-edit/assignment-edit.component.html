@@ -1,0 +1,21 @@
+<app-menu></app-menu>
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title'>{{title}} - Assignment ID: {{id}} </span>
+    </div>
+</div>
+<div>
+    <main class="single">
+        <table class="table table-sm">
+            <tr>
+                <td>
+                    Description:
+                </td>
+                <td>
+                    <input [(ngModel)]="assignment.description" class="rounded" type="text" style="width: 40em;">
+                </td>
+            </tr>
+        </table>
+    </main>
+    <span><button (click)="save()" class="btn btn-sm btn-primary">Save</button></span>
+</div>

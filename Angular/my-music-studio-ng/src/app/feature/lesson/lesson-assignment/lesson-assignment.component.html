@@ -1,0 +1,53 @@
+<app-menu></app-menu>
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title' style="font-size: larger;">{{titleOne}} </span>
+        <span> | <a routerLink="/lessons/list">Return to lessons...</a></span>
+    </div>
+</div>
+<p *ngIf='!lesson'>Loading...</p>
+<table *ngIf='lesson' class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Date Assigned</th>
+            <th>Lesson Date</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{lesson.user.userName}}</td>
+            <td>{{lesson.dateAssigned | date: 'mediumDate'}}</td>
+            <td>{{lesson.lessonDateTime | date:'mediumDate'}}</td>
+            <td><time>{{lesson.lessonDateTime | date:'shortTime'}}</time></td>
+            <td>{{lesson.location}}</td>
+            <td>{{lesson.status}}</td>
+        </tr>
+    </tbody>
+</table>
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title' style="font-size: larger;">{{titleTwo}} </span>
+    </div>
+</div>
+<table *ngIf='assignments' class="table table-striped">
+    <tbody>
+        <tr *ngIf="assignments==''" style="background: #ff8080; padding: 1em;">
+            <td colspan="6">No assignments yet. Please add an assignment!</td>
+        </tr>
+        <tr *ngFor="let a of assignments | sort:sortCriteria:sortOrder">
+            <td>{{a.description}}</td>
+            <td *ngIf='isAdmin'>
+                <a routerLink='/assignments/edit/{{a.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
+                |
+                <a (click)="delete(a.id)" style="cursor: pointer;"><img src='assets/delete.png' width='20' height='20' title='delete'></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<span><a routerLink='/assignments/create/{{lesson.id}}'>
+    <img id='createnew' width='35' height='35' src='assets/add-icon.png' title='Add New' *ngIf='isAdmin'></a>
+</span>
